@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aragosta Vermentino di Sardegna DOC - Santa Maria la Palma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #8e2d2d;
+            --secondary-color: #f8f3e9;
+            --accent-color: #d4a76a;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-color: #e0e0e0;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            color: var(--text-color);
+            line-height: 1.6;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cart-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .cart-icons i {
+            font-size: 20px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+        
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .breadcrumb a {
+            color: #777;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .image-gallery {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .main-image img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 5px 0;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-color: var(--secondary-color);
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .thumbnail img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .winery {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .product-subtitle {
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stars {
+            color: var(--accent-color);
+        }
+        
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .current-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .original-price {
+            font-size: 20px;
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .discount {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .description {
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .details-box {
+            background: var(--light-gray);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        
+        .detail-label {
+            min-width: 120px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .detail-value {
+            flex: 1;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .add-to-cart {
+            flex: 1;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background: #7a2525;
+        }
+        
+        .wishlist-btn {
+            width: 55px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .payment-methods {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-text {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .payment-icons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 25px;
+            background: var(--light-gray);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .tab-content {
+            margin-bottom: 30px;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .spec-item {
+            background: var(--light-gray);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .spec-label {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        
+        .spec-value {
+            font-weight: 500;
+        }
+        
+        .related-products {
+            margin: 50px 0;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card-image {
+            height: 200px;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .product-card-info {
+            padding: 15px;
+        }
+        
+        .product-card-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        
+        .product-card-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background: var(--light-gray);
+            padding: 40px 0;
+            margin-top: 50px;
+            border-radius: 12px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">TELEVINO</div>
+        <div class="nav-links">
+            <a href="#">Wines</a>
+            <a href="#">Regions</a>
+            <a href="#">Special Offers</a>
+            <a href="#">About Us</a>
+        </div>
+        <div class="cart-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-user"></i>
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+    </header>
+    
+    <div class="breadcrumb">
+        <a href="#">Home</a> > <a href="#">Wines</a> > <a href="#">Italy</a> > <a href="#">Sardinia</a> > Aragosta Vermentino di Sardegna DOC
+    </div>
+    
+    <div class="container">
+        <div class="image-gallery">
+            <div class="main-image">
+                <img src="https://www.santamarialapalma.it/wp-content/uploads/2018/08/Aragosta-Vermentino-Doc-Sardegna.jpg" alt="Aragosta Vermentino di Sardegna DOC">
+            </div>
+            <div class="thumbnail-container">
+                <div class="thumbnail">
+                    <img src="data:image/jpeg;base64,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" alt="Front label">
+                </div>
+                <div class="thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvTXFe5skKJ3EedBU7p_XzFGY5xCTgl60CjA&s" alt="Back label">
+                </div>
+                <div class="thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvs58Sc7ltsVCCX59IldLbV-p5zGjU9iqrag&s" alt="Bottle shot">
+                </div>
+                <div class="thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtSfVni4Spu4x7w191AEkofrkt9nvEy4dAAg&s" alt="Vineyard">
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-info">
+            <div class="winery">SANTA MARIA LA PALMA</div>
+            <h1 class="product-title">Aragosta Vermentino di Sardegna DOC</h1>
+            <div class="product-subtitle">2025 - Sardinian White Wine</div>
+            
+            <div class="rating">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span>(42 reviews)</span>
+            </div>
+            
+            <div class="price-container">
+                <div class="current-price">€6.90</div>
+                <div class="original-price">€8.50</div>
+                <div class="discount">19% OFF</div>
+            </div>
+            
+            <p class="description">
+                A fresh and aromatic white wine from Sardinia's sun-drenched vineyards. This Vermentino offers delightful notes of citrus, green apple, and Mediterranean herbs with a crisp, mineral finish. Perfect with seafood dishes or as an aperitif.
+            </p>
+            
+            <div class="details-box">
+                <div class="detail-item">
+                    <div class="detail-label">Region:</div>
+                    <div class="detail-value">Sardinia, Italy</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Vintage:</div>
+                    <div class="detail-value">2024</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Alcohol:</div>
+                    <div class="detail-value">13% VOL</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Volume:</div>
+                    <div class="detail-value">750 ml</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Type:</div>
+                    <div class="detail-value">White Wine, DOC</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Grape:</div>
+                    <div class="detail-value">100% Vermentino</div>
+                </div>
+            </div>
+            
+            <div class="quantity-selector">
+                <div class="quantity-btn" id="decrease">-</div>
+                <input type="text" class="quantity-input" value="1" id="quantity">
+                <div class="quantity-btn" id="increase">+</div>
+                <div>In stock (124 bottles)</div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="add-to-cart">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+                <button class="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            
+            <div class="payment-methods">
+                <span class="payment-text">Secure payment with:</span>
+                <div class="payment-icons">
+                    <div class="payment-icon">PayPal</div>
+                    <div class="payment-icon">Visa</div>
+                    <div class="payment-icon">MC</div>
+                    <div class="payment-icon">SEPA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="description">Description</div>
+        <div class="tab" data-tab="specs">Specifications</div>
+        <div class="tab" data-tab="reviews">Reviews</div>
+        <div class="tab" data-tab="pairing">Food Pairing</div>
+    </div>
+    
+    <div class="tab-content">
+        <div class="tab-pane active" id="description">
+            <p>The Aragosta Vermentino di Sardegna DOC is produced by Santa Maria la Palma, a renowned cooperative in Sardinia with over 300 winegrowers. The vineyards are located near the sea, which gives the wine its characteristic freshness and mineral notes.</p>
+            <p>This Vermentino is harvested manually and fermented in stainless steel tanks at controlled temperatures to preserve its aromatic profile. It presents a pale straw yellow color with green reflections. The nose offers intense aromas of citrus fruits, white flowers, and hints of almond.</p>
+            <p>On the palate, it is fresh, dry, and well-balanced with a pleasant acidity that makes it perfect for pairing with seafood, especially lobster (Aragosta means lobster in Italian), fish dishes, and fresh cheeses.</p>
+        </div>
+        
+        <div class="tab-pane" id="specs">
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Wine Type</div>
+                    <div class="spec-value">White Wine</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Classification</div>
+                    <div class="spec-value">DOC</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Vintage</div>
+                    <div class="spec-value">2024</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Alcohol Content</div>
+                    <div class="spec-value">13% VOL</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Grape Variety</div>
+                    <div class="spec-value">100% Vermentino</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Region</div>
+                    <div class="spec-value">Sardinia</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Aging</div>
+                    <div class="spec-value">Stainless Steel</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Serving Temperature</div>
+                    <div class="spec-value">10-12°C</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-pane" id="reviews">
+            <h3>Customer Reviews</h3>
+            <p>Average rating: 4.5/5 based on 42 reviews</p>
+            <!-- Reviews would be displayed here -->
+        </div>
+        
+        <div class="tab-pane" id="pairing">
+            <h3>Recommended Food Pairings</h3>
+            <ul>
+                <li>Grilled fish and seafood</li>
+                <li>Lobster and shellfish</li>
+                <li>Light pasta dishes with seafood</li>
+                <li>Fresh salads with goat cheese</li>
+                <li>Fried calamari and whitebait</li>
+                <li>As an aperitif</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="related-products">
+        <h2 class="section-title">You might also like</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="https://www.saporidoc.it/2996-large_default/cannonau-di-sardegna-doc-riserva-sellamosca.jpg" alt="Other wine">
+                </div>
+                <div class="product-card-info">
+                    <div class="product-card-title">Cannonau di Sardegna DOC</div>
+                    <div class="product-card-price">€8.50</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="data:image/jpeg;base64,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" alt="Other wine">
+                </div>
+                <div class="product-card-info">
+                    <div class="product-card-title">Vermentino di Gallura DOCG</div>
+                    <div class="product-card-price">€11.90</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="data:image/jpeg;base64,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" alt="Other wine">
+                </div>
+                <div class="product-card-info">
+                    <div class="product-card-title">Sardegna Semidano DOC</div>
+                    <div class="product-card-price">€9.20</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card-image">
+                    <img src="data:image/jpeg;base64,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" alt="Other wine">
+                </div>
+                <div class="product-card-info">
+                    <div class="product-card-title">Carignano del Sulcis DOC</div>
+                    <div class="product-card-price">€10.50</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Imprint</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Televino Wine Merchants. All rights reserved.Developed by Mohibul.
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and panes
+                tabs.forEach(t => t.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding pane
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Quantity selector functionality
+        const decreaseBtn = document.getElementById('decrease');
+        const increaseBtn = document.getElementById('increase');
+        const quantityInput = document.getElementById('quantity');
+        
+        decreaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+        
+        increaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+        });
+    </script>
+</body>
+</html>
